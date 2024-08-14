@@ -4,8 +4,7 @@ services:
     container_name: zookeeper
     ports:
       - "2181:2181"
-    networks:
-      - kafka-network
+
   kafka:
     image: wurstmeister/kafka:latest
     container_name: kafka
@@ -19,8 +18,6 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     depends_on:
       - zookeeper
-    networks:
-      - kafka-network
 
   order:
     container_name: order
@@ -32,8 +29,8 @@ services:
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     depends_on:
       - kafka
-    networks:
-      - kafka-network
+
+
 #  billing:
 #    container_name: billing
 #    build: ../billing
@@ -43,13 +40,11 @@ services:
 #      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
 #    depends_on:
 #      - order
-#    networks:
-#      - kafka-network
+
+
 #  delivery:
 #    container_name: delivery
 #    build: ../delivery
 #    ports:
 #      - 8083:8080
-networks:
-  kafka-network:
-    driver: bridge
+
