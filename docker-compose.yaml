@@ -31,15 +31,15 @@ services:
       - kafka
 
 
-#  billing:
-#    container_name: billing
-#    build: ../billing
-#    ports:
-#      - 8082:8080
-#    environment:
-#      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
-#    depends_on:
-#      - order
+  billing:
+    container_name: billing
+    build: ../billing
+    ports:
+      - 8082:8080
+    environment:
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - order
 
 
 #  delivery:
